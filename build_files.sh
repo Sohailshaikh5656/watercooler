@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Python version: $(python --version)"
+echo "PATH: $PATH"
+
 # Create a virtual environment
 python -m venv venv
 
