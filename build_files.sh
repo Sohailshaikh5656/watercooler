@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Activate virtual environment using vercel python
-vercel python -m venv venv
+# Create a virtual environment
+python -m venv venv
 
 # Activate the virtual environment
 source venv/bin/activate
