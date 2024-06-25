@@ -1,0 +1,180 @@
+{% extends 'user/common/layout.html'%}
+{% block content %}
+{% load static %}
+
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>See more Details</p>
+                    <h1>Single Product</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<!-- single product -->
+<div class="single-product mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            
+            {% if request.session.order_done %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                 Order Placed Successfully !
+            </div>
+            <script>
+                // Clear the session message
+                fetch("{% url 'clear_message' %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    }
+                });
+            </script>
+            
+            <!-- code to display if the session variable is empty -->
+        {% endif %}
+            <div class="col-md-5">
+                <div class="single-product-img">
+                    <img src="assets/img/products/product-img-5.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="contact-form">
+					<form action="/user/order_store/{{result.id}}" method="POST">
+						{% csrf_token %}
+                        <h2>Product Information</h2>
+                        <h4>{{result.productname}}</h4>
+                    <p class="single-product-pricing"><span>Water Capacity :  {{result.capacity}}</span> Rs. {{result.price}} / Per</p>
+                    <p>{{result.description}}.</p>
+                    <br />
+                    <p><h3>Fill Up Extra Information</h3></p>
+						<p>
+                            <input type="number" placeholder="Enter Quantity" name="qty" id="qty" min="20" required>						</p>
+                        <p>
+                            <label for="datetime">Select Order Deliver Date and Time:</label></p>
+                            <p>
+                            <input type="datetime-local" name="order_rec" id="datetime" min="" required placeholder="Select Order deliver Date and Time">
+						</p>
+                        <p>
+                           
+                            <select id="supplier" name="supplier" >
+                                <option value="">Select Supplier </option>
+                                {% for i in result1 %}
+                                    <option value="{{ i.id }}">{{ i.branchname }}</option>
+                                {% endfor %}
+                            </select>
+                        <p>
+                            <textarea placeholder="Enter Order Receive Address" name = "address"></textarea>
+						</p>
+
+                        <input class="btn btn-primary" type="submit" value="Place Order">
+                    </form>
+						
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end single product -->
+
+<!-- more products -->
+<div class="more-products mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="section-title">	
+                    <h3><span class="orange-text">Related</span> Products</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+                    </div>
+                    <h3>Strawberry</h3>
+                    <p class="product-price"><span>Per Kg</span> 85$ </p>
+                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
+                    </div>
+                    <h3>Berry</h3>
+                    <p class="product-price"><span>Per Kg</span> 70$ </p>
+                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+                    </div>
+                    <h3>Lemon</h3>
+                    <p class="product-price"><span>Per Kg</span> 35$ </p>
+                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end more products -->
+
+<!-- logo carousel -->
+<div class="logo-carousel-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="logo-carousel-inner">
+                    <div class="single-logo-item">
+                        <img src="assets/img/company-logos/1.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="assets/img/company-logos/2.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="assets/img/company-logos/3.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="assets/img/company-logos/4.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="assets/img/company-logos/5.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Get current date and time
+    var today = new Date();
+    var yyyy = today.getFullYear();
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    var dd = String(today.getDate()).padStart(2, '0');
+    var hh = String(today.getHours()).padStart(2, '0');
+    var min = String(today.getMinutes()).padStart(2, '0');
+
+    // Format: YYYY-MM-DDTHH:MM (e.g., "2022-06-11T14:30")
+    var datetime = yyyy + '-' + mm + '-' + dd + 'T' + hh + ':' + min;
+
+    // Set min and max attributes for the datetime input
+    document.getElementById("datetime").setAttribute("min", datetime);
+    document.getElementById("datetime").setAttribute("max", "9999-12-31T23:59"); // or any future date and time
+</script>
+
+
+<!-- end logo carousel -->
+
+{% endblock %}
+<!-- end logo carousel -->

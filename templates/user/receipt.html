@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <title>
+
+        </title>
+        <style>
+            th{
+                text-align:left;
+            }
+            p{
+                font-size:25px;
+                text-align : center;
+                font-weight : 900;
+            }
+            th{
+                border-right:.7px solid black;
+                font-size : 13px;
+            }
+            td{
+                
+                font-size : 13px;
+            }
+            .details{
+                background-color:#252525;
+                color:white;
+                font-weight:1100;
+                font-size:14px;
+            }
+
+            .total{
+                background-color:darkblue;
+                color:white;
+                font-weight:1100;
+                font-size:16px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <p>Water Cooler Reciept</p>
+        <table cellspacing = 1 cellpadding=10 align = "center" style="width:50%; border-bottom:1px solid black;">
+            <tr>
+                <th class="details">Fields</th>
+                <td class="details">Details</td>
+            </tr>
+            <tr>
+                <th>Order_ID</th>
+                <td>{{result.id}}</td>
+            </tr>
+            <tr>
+                <th>Product_id</th>
+                <td>{{result.product_id}}</td>
+                </tr>
+            <tr>
+                <th>user_id</th>
+                <td>{{result.user_id}}</td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td>{{result.quantity}}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{product.price}}</td>
+            </tr>
+             <tr>
+                <th>Dilivery Date and Time</th>
+                <td>{{result.order_deliver}}</td>
+            </tr>
+            <tr>
+                <th>Order_Payment_id</th>
+                <td>{{result.payment_id}}</td>
+            </tr>
+            <tr>
+                <th>Payment Status</th>
+                <td>{{result.payments}}</td>
+            </tr>
+
+            <tr>
+                <th>User Name</th>
+                <td>{{user_info.first_name}}&nbsp;&nbsp;{{user_info.last_name}}</td>
+            </tr>
+
+            <tr>
+                <th>User Contact No.</th>
+                <td>{{user_profile.phone}}</td>
+            </tr>
+            <tr>
+                <th>User Permanent Address</th>
+                <td>{{user_profile.address}}</td>
+            </tr>
+            <tr>
+                <th>Area</th>
+                <td>{{area}}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{city}}</td>
+            </tr>
+            <tr>
+                <th>Dilivery Address.</th>
+                <td>{{result.order_address}}</td>
+            </tr>
+
+            <tr class = "total">
+                <th class = "total">Total Cost</th>
+                <td class = "total">{{cost}}</td>
+            </tr>
+            
+        </table>
+
+     
+    </body>
+</html>

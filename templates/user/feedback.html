@@ -1,0 +1,83 @@
+{% extends 'user/common/layout2.html'%}
+{% block content %}
+
+{% load static %}
+
+<style>
+   .cd__main{
+      position : absolute;
+      top:20%;
+   }
+</style>
+      
+      <!--$%adsense%$-->
+      <main class="cd__main">
+         <form action="/user/feedback_store" method="POST">
+            {% csrf_token %}
+         <!-- Start DEMO HTML (Use the following code into your project)-->
+         <div class="wrapper wr"> 
+            {% if request.session.feedback %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                FeedBack Stored !
+            </div>
+            <script>
+                // Clear the session message
+                fetch("{% url 'clear_message' %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    }
+                });
+            </script>
+            
+            <!-- code to display if the session variable is empty -->
+        {% endif %}
+
+        {% if request.session.feedback_updated %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            FeedBack Updated !
+        </div>
+        <script>
+            // Clear the session message
+            fetch("{% url 'clear_message' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            });
+        </script>
+        
+        <!-- code to display if the session variable is empty -->
+    {% endif %}
+  <div class="title">Rate your experience</div>
+  <div class="content">We highly value your feedback! Kindly take a moment to rate your experience and provide us with your valuable feedback.</div>
+  
+  <div class="rate-box">
+   
+    <input type="radio" name="star" id="star0" value = "1" />
+    <label class="star" for="star0"></label>
+    <input type="radio" name="star" id="star1"  value = "2"/>
+    <label class="star" for="star1"></label>
+    <input type="radio" name="star" id="star2"  value = "3"/>
+    <label class="star" for="star2"></label>
+    <input type="radio" name="star" id="star3"  value = "4"/>
+    <label class="star" for="star3"></label>
+    <input type="radio" name="star" id="star4"  value = "5"/>
+    <label class="star" for="star4"></label>
+  </div>
+  <textarea cols="30" rows="6" placeholder="Tell us about your experience!" name="msg"></textarea>
+  <input type="submit" value="submit" class="submit-btn">
+  
+</div>
+</form>
+         <!-- END EDMO HTML (Happy Coding!)-->
+</main>
+      
+      <!-- Script JS -->
+      
+      <!--$%analytics%$-->
+
+
+{% endblock %}
